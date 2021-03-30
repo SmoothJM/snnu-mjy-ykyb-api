@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 
+const user = require('./routes/user');
 
 const app = express();
 const basicURL = '/api';
@@ -19,5 +20,6 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.use(basicURL + '/user', user);
 
 app.listen(3000, '127.0.0.1');
