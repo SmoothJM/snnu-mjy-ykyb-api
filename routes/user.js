@@ -2,14 +2,11 @@ const express = require("express");
 const router = express.Router();
 const userData = require("../data/userData");
 
-router.get("/", (req, res) => {
-  console.log(req);
-  res.json({ msg: "土豆土豆🥔，我是地瓜🍠" });
-  userData.authUserAccount([req.usn, req.pwd], (result) => {
+router.post("/login", (req, res) => {
+  userData.authUserAccount([req.body.stuCode, req.body.password], (result) => {
     console.log(result);
-    res.json({ result });
+    res.json({ result, msg: result.length > 0 ? "ok" : "error" });
   });
 });
-
 
 module.exports = router;
